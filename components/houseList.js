@@ -1,17 +1,14 @@
-import { useEffect, useState } from 'react';
+import loadingStatus from '@/helpers/loadingStatus';
 import HouseRow from './houseRow';
+import useHouses from '@/hooks/useHouses';
+import LoadingIndicator from './loadingIndicator';
 
-const HouseList = () => {
-  const [houses, setHouses] = useState([]);
+const HouseList = ({ selectHouse }) => {
+  const { houses, setHouses, loadingState } = useHouses();
 
-  useEffect(() => {
-    const fetchHouses = async () => {
-      const response = await fetch('/api/houses');
-      const houses = await response.json();
-      setHouses(houses);
-    };
-    fetchHouses();
-  }, []);
+  if (loadingState !== loadingStatus.loaded) {
+    return <LoadingIndicator loadingState={loadingState} />;
+  }
 
   const addHouse = () => {
     setHouses([
@@ -42,7 +39,7 @@ const HouseList = () => {
         </thead>
         <tbody>
           {houses.map((house) => (
-            <HouseRow house={house} key={house.id} />
+            <HouseRow house={house} key={house.id} selectHouse={selectHouse} />
           ))}
         </tbody>
       </table>
