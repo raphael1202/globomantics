@@ -1,14 +1,13 @@
-import loadingStatus from '@/helpers/loadingStatus';
+import loadingStatus from '../helpers/loadingStatus';
+import useHouses from '../hooks/useHouses';
 import HouseRow from './houseRow';
-import useHouses from '@/hooks/useHouses';
 import LoadingIndicator from './loadingIndicator';
 
-const HouseList = ({ selectHouse }) => {
+const HouseList = () => {
   const { houses, setHouses, loadingState } = useHouses();
 
-  if (loadingState !== loadingStatus.loaded) {
+  if (loadingState !== loadingStatus.loaded)
     return <LoadingIndicator loadingState={loadingState} />;
-  }
 
   const addHouse = () => {
     setHouses([
@@ -38,12 +37,12 @@ const HouseList = ({ selectHouse }) => {
           </tr>
         </thead>
         <tbody>
-          {houses.map((house) => (
-            <HouseRow house={house} key={house.id} selectHouse={selectHouse} />
+          {houses.map((h) => (
+            <HouseRow key={h.id} house={h} />
           ))}
         </tbody>
       </table>
-      <button onClick={addHouse} className="btn btn-primary">
+      <button className="btn btn-primary" onClick={addHouse}>
         Add
       </button>
     </>
