@@ -95,6 +95,12 @@
       "houseId": 5,
       "bidder": "Raphael",
       "amount": 200000
+    },
+    {
+      "id": 17,
+      "houseId": 4,
+      "bidder": "Raphael",
+      "amount": 500000
     }
   ]
 }
