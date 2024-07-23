@@ -92,9 +92,6 @@ After completing the installation steps, you can access the React web applicatio
   - Entity Framework Core
   - SQLite
 
-- **Authentication:**
-  - User authentication and authorization
-
 ## API Endpoints
 
 ### House Endpoints
